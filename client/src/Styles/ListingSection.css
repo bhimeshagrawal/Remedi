@@ -1,0 +1,37 @@
+.SearchBarContainer{
+    border: 1px solid gray;
+    border-radius:50px;
+    height: 70px;
+    display: flex;
+    
+
+}
+.searchBar{
+    width: 40%;
+    height: 100%;
+}
+.searchform{
+    /* border-radius: 50px 0px 0px 50px; */
+    height: 67px; 
+    border: none;
+}
+
+.filterBar{
+    height: 70px;
+    
+
+}
+.searchBarButton{
+    width: 10%;
+    border: none;
+}
+#btn1{
+    border-radius: 50px 0px 0px 50px;
+}
+#btn2, #btn3{
+    /* background-color: rgb(218, 211, 211); */
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    border-radius: 0px 0px;
+    font-size: larger;
+}

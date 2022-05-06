@@ -1,0 +1,41 @@
+.footerContainer{
+    text-align: center;
+    background-color: rgb(218, 231, 227);
+    
+}
+.footerContainer a{
+    text-decoration: none;
+    color: rgb(160, 171, 177);
+}
+.iconContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+}
+.icons{
+    height: 50px;
+    width: 50px;
+
+}
+.icons::after{
+    content: " ";
+    background-color: black;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    height: 10px;
+}
+.icons::before{
+    content: "";
+    background-color: black;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    height: 10px;
+}
+.footerSpan{
+    color: gray;
+
+}

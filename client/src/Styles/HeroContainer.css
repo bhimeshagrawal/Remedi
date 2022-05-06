@@ -1,0 +1,17 @@
+.main-heading-secondary {
+    font-family: sans-serif;
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(105, 105, 105);
+  }
+  .animate__fadeInDownBig {
+    --animate-duration: 1s;
+  }
+  .animate__fadeInUpBig {
+    --animate-duration: 1s;
+  }
+  .animate__zoomIn {
+    --animate-duration: 2s;
+  }
