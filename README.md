@@ -3,8 +3,8 @@
 Team Project for Hackfest 2k22 Hackathon.
 
 Team members :
-Bhimesh Agrawal
-Shubham Singh
-Akash Mittal
-Syed Areeb
-Shubham Kurrey
+Bhimesh Agrawal <br/>
+Shubham Singh <br/>
+Akash Mittal <br/>
+Syed Areeb <br/>
+Shubham Kurrey <br/>
