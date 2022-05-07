@@ -1,0 +1,42 @@
+.navbar form{
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+}
+.navbar form input{
+  margin-right: 20px;
+}
+#searchBar{
+  background-color: transparent!important;
+}
+.search-container{
+  height: 73vh;
+  overflow-y: scroll;
+}
+.result
+{
+  width: 90%;
+  padding: 10px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:20px;
+}
+.result .card{
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+@media screen and (max-width: 1400px) 
+{
+  .search-container{
+    height: 77.5vh;
+  }
+  .result
+{
+  display: block;
+}
+.result .card{
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+}

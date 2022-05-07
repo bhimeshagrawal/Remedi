@@ -1,0 +1,45 @@
+
+.dataContainer{
+    width: 90%;
+    margin: 10px auto;
+    border-radius: 10px;
+    border: 1px solid rgb(190, 189, 189);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    transition: 0.3s;
+ }
+ .dataContainer:hover{
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+ }
+ .mainData{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ .dataBadge{
+    height: 20px;
+ }
+ .dataIcons{
+    font-size: large;
+ 
+ }
+ .dataButtons{
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+ }
+ .listDropdown, .listButton{
+    background-color: transparent;
+    color: gray;
+    border: none;
+ }
+ .listDropdown:hover, .listButton:hover{
+    background-color: transparent;
+    color: black;
+ }
+ .listDropdown:active{
+    background-color: transparent;
+ }

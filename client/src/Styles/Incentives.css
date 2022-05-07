@@ -1,0 +1,35 @@
+.incentives h3{
+text-align: center;
+font-weight: 800px;
+margin-top: 100px;
+margin-bottom: 60px;
+}
+.incentive-item{
+  display: flex;
+  flex-direction: row;
+  /* text-align: justify; */
+  margin: 0 auto;
+  justify-content: space-evenly;
+  margin-bottom: 100px;
+}
+.card{
+  width: 300px;
+  box-shadow: 0 0 15px 0 #C7C9D9;
+  border-width: 5px 0 0 0;
+  border-color: #4D77FF;
+}
+@media screen and (max-width: 1400px) 
+{
+  .incentives h3{
+    margin-top: 85px;
+    margin-bottom: 60px;
+  }
+  .incentive-item{
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0;
+  }
+  .card{
+    margin-bottom: 50px;
+  }
+}

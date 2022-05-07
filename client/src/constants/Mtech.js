@@ -1,0 +1,18 @@
+export const mtech = [
+  "Applied Geophysics",
+  "Applied Geology",
+  "Chemical Engineering",
+  "Civil Engineering",
+  "Computer Science and Engineering",
+  "Data Analytics",
+  "Electrical Engineering",
+  "Electronics & Communication Engineering",
+  "Environmental Engineering",
+  "Industrial Engineering & Management",
+  "Mechanical Engineering",
+  "Fuel, Minerals & Metallurgical Engineering",
+  "Mining Engineering",
+  "Mining Machinery Engineering",
+  "Petroleum Engineering",
+  "Pharmaceutical Science & Engineering",
+];

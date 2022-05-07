@@ -1,0 +1,93 @@
+/* .form-container{
+    background-color: #4D77FF;
+    padding: 80px 250px 10px 250px;
+    color: white;
+    font-weight: 600;
+  }
+  .form-container h3{
+    text-align: center;
+    color: black;
+    font-weight: 600;
+  }
+  .form-container .mb-3{
+    margin: 40px 0;
+  }
+  .form-container button{
+    display: block;
+    margin: 50px auto;
+    background-color: transparent;
+    border: 2px solid white;
+  }
+  .form-container button:hover{
+    background-color: transparent;
+    color: black;
+    border: 2px solid black;
+  }
+  .form-container button:active{
+    background-color: transparent;
+    color: blue;
+    border: 2px solid blue;
+  }
+  @media screen and (max-width: 1400px) 
+  {
+    .form-container{
+      padding: 60px 30px 5px 30px;
+    }
+  } */
+
+/* .footerContainer{
+    text-align: center;
+    background-color: rgb(218, 231, 227);
+    
+}
+.footerContainer a{
+    text-decoration: none;
+    color: rgb(160, 171, 177);
+}
+.iconContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+}
+.icons{
+    height: 50px;
+    width: 50px;
+
+}
+.icons::after{
+    content: " ";
+    background-color: black;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    height: 10px;
+}
+.icons::before{
+    content: "";
+    background-color: black;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    height: 10px;
+}
+.footerSpan{
+    color: gray;
+
+} */
+.footer-container{
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  height: 4%;
+  font-weight: 400;
+  color: gray;
+}
+@media screen and (max-width: 1400px) 
+{
+.footer-container{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+}

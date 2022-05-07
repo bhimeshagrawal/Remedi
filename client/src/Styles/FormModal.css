@@ -1,0 +1,19 @@
+.categoryName{
+    font-family: roboto, sans-serif;
+    color: rgb(86, 139, 139);
+    font-weight: bolder ;
+}
+.categoryName::after{
+    content: "";
+    height: 5px;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    background-color: black;
+}
+.headingdiv{
+    display: flex;
+}
+.modalHeading{
+    font-weight: bold;
+}

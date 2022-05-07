@@ -1,0 +1,20 @@
+nav{
+padding: 45px;
+margin: 15px 0;
+}
+#signup{
+  margin: 0 25px;
+  border-radius: 13%;
+  padding: 7px 15px;
+}
+#signin{
+  border: 2px solid #4D77FF;
+  border-radius: 13%;
+  padding: 5px 13px;
+}
+.navbar-brand{
+font-weight: 700;
+}
+.navbar-brand span{
+  color: #4D77FF;
+}
