@@ -1,0 +1,43 @@
+.home-text span{
+  color: #4D77FF;
+}
+#doctor{
+  height: 100%;
+  width: 100%;
+}
+#main-display{
+  display: flex;
+  flex-direction: row;
+  padding-left: 55px;
+  height: 88vh;
+}
+.main-text{
+  padding-top: 50px;
+}
+.main-text h1{
+  margin-bottom: 20px;
+}
+.main-text p{
+  margin-bottom: 30px;
+}
+.main-text button{
+  line-height: 30px;
+  padding: 5px 13px;
+  border-radius: 6px;
+}
+@media screen and (max-width: 1400px) 
+{
+  #doctor{
+    height: 0;
+    width: 0;
+    display: none;
+  }
+  #main-display{
+    padding-right: 55px;
+    height: 100%;
+    margin-bottom: 50px;
+  }
+  .main-text{
+    padding-top: 10px;
+  }
+}
