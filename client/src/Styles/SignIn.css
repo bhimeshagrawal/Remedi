@@ -1,11 +1,11 @@
 *{
     font-family: 'Manrope', sans-serif;
     }
-    body{
+    /* body{
       background-image:url(../../public/Images/background.jpg);
       background-size: cover;
       background-position: center;
-    }
+    } */
     .HeroContainer{
       width: 90%;
       height: 90vh;

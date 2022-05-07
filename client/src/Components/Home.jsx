@@ -10,7 +10,7 @@ export const Home = () => {
       Medicine Redistribution Made Simple For <span>Everyone</span>
     </h1>
     <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora sapiente dolor eaque, quam placeat at, pariatur magni ullam autem molestias maiores mollitia accusantium iusto totam impedit, reiciendis quibusdam. Neque, iusto.
+    Lend a helping hand to those in need by donating unused medication or funds to support our work. Your donations stop waste and save lives.
     </p>
     <button className="btn btn-sm btn-primary">
       Donate Now

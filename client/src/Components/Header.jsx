@@ -32,12 +32,12 @@ export const Header = () => {
                 </a>
               </li>
             </ul>
-            <button className="btn btn-sm" id="signin">
-                Sign In
+            <button className="btn btn-sm btn-outline-primary" id="signin">
+                My Profile
             </button>
-            <button className="btn btn-sm btn-primary" id="signup">
+            {/* <button className="btn btn-sm btn-primary" id="signup">
                 Sign Up
-            </button>
+            </button> */}
           </div>
         </div>
       </nav>
