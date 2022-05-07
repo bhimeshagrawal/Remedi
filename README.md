@@ -42,4 +42,4 @@ Shubham Kurrey <br/>
 ![ngo-mobile](https://user-images.githubusercontent.com/78265224/167241962-55e61bfc-2a0a-48e5-a866-2959d3a7b630.png)
 <hr>
 <h1> Our Current Back-End Progress :</h1>
-On the Backend part, we have created the database schema of the user and the
+On the Backend part, we have created the database schema of the user and the medicine , also we have created various routes for login , registration , and donor form filling,also we had setup nodemailer in the website to use as a mailing system these routes will now be linked to the frontend of the website and hence the website will work integratively.
