@@ -20,148 +20,47 @@ export const Search = () => {
       <div className="result">
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <h5 className="card-title">Medicine 1</h5>
+            <h6 className="card-subtitle mb-2 text-muted">House no 5, road no.7 , area , code, city</h6>
             <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
+              <i>NDC</i>: user1
+              <br />
+              <i>Expiration Date</i> : 30:12:2022
+              <br />
+              <i>Collected from</i> : user1
             </p>
-            <a href="#" className="card-link">
-              Card link
-            </a>
-            <a href="#" className="card-link">
-              Another link
-            </a>
+            <button type="button" class="btn btn-primary btn-sm">Collect</button>
           </div>
         </div>
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <h5 className="card-title">Medicine 1</h5>
+            <h6 className="card-subtitle mb-2 text-muted">House no 5, road no.7 , area , code, city</h6>
             <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
+              <i>NDC</i>: user1
+              <br />
+              <i>Expiration Date</i> : 30:12:2022
+              <br />
+              <i>Collected from</i> : user1
             </p>
-            <a href="#" className="card-link">
-              Card link
-            </a>
-            <a href="#" className="card-link">
-              Another link
-            </a>
+            <button type="button" class="btn btn-primary btn-sm">Collect</button>
           </div>
         </div>
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <h5 className="card-title">Medicine 1</h5>
+            <h6 className="card-subtitle mb-2 text-muted">House no 5, road no.7 , area , code, city</h6>
             <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
+              <i>NDC</i>: user1
+              <br />
+              <i>Expiration Date</i> : 30:12:2022
+              <br />
+              <i>Collected from</i> : user1
             </p>
-            <a href="#" className="card-link">
-              Card link
-            </a>
-            <a href="#" className="card-link">
-              Another link
-            </a>
+            <button type="button" class="btn btn-primary btn-sm">Collect</button>
           </div>
         </div>
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="#" className="card-link">
-              Card link
-            </a>
-            <a href="#" className="card-link">
-              Another link
-            </a>
-          </div>
-        </div>
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="#" className="card-link">
-              Card link
-            </a>
-            <a href="#" className="card-link">
-              Another link
-            </a>
-          </div>
-        </div>
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="#" className="card-link">
-              Card link
-            </a>
-            <a href="#" className="card-link">
-              Another link
-            </a>
-          </div>
-        </div>
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="#" className="card-link">
-              Card link
-            </a>
-            <a href="#" className="card-link">
-              Another link
-            </a>
-          </div>
-        </div>
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="#" className="card-link">
-              Card link
-            </a>
-            <a href="#" className="card-link">
-              Another link
-            </a>
-          </div>
-        </div>
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="#" className="card-link">
-              Card link
-            </a>
-            <a href="#" className="card-link">
-              Another link
-            </a>
-          </div>
-        </div>
+        
       </div>
     </div>
   );
