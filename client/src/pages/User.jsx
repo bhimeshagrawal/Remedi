@@ -3,7 +3,7 @@ import {Header} from "../Components/Header";
 import {Incentives} from "../Components/Incentives";
 import {Forms} from "../Components/Forms";
 import {Home} from "../Components/Home";
-import {Footer} from "../Components/Footer";
+
 export default function User() {
   return (
     <>
@@ -11,7 +11,6 @@ export default function User() {
     <Home/>
     <Incentives/>
     <Forms/>
-    <Footer/>
     </>
   )
 }

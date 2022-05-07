@@ -1,0 +1,67 @@
+*{
+    font-family: 'Manrope', sans-serif;
+    }
+    body{
+      background-image:url(../../public/Images/background.jpg);
+      background-size: cover;
+      background-position: center;
+    }
+    .HeroContainer{
+      width: 90%;
+      height: 90vh;
+      display: flex;
+      flex-direction: row;
+      margin: 5vh auto;
+      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+      border-radius: 10px;
+      background-color: white;
+    }
+    .imageContainer{
+      width: 50%;
+      height: 100%;
+      background-image: url("../Images/Doctor.png");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: 10px;
+    }
+    .imageHeading{
+      font-size: 70px;
+      color: #4D77FF;
+    
+    }
+    .form-control{
+      border: none;
+      border-bottom: 1px solid grey;
+      
+    
+    }
+    .formContainer{
+      width: 50%;
+      height: 100%;
+      padding-right: 50px;        
+      padding-left: 50px;
+      text-align: center;
+    }
+    .formHeading{
+      font-size: 50px;
+      margin: 20px auto;
+    }
+    .loginBtn, .Changelogin{
+      width: 100%;
+      height: 50px;
+      transition: 0.3s all;
+    }
+    .loginForm{
+      width: 100%;
+      position: relative;
+      top: 20%;
+    
+    }
+    .signupForm{
+      width: 100%;
+      position: relative;
+     top: 5%;
+    
+    }
+    

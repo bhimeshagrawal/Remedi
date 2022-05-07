@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
-import SignIn from "./pages/sign_in/SignIn";
+import SignIn from "./pages/SignIn";
 import User from "./pages/User";
 import Ngo from "./pages/Ngo"
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
