@@ -6,9 +6,16 @@ var UserSchema = new mongoose.Schema({
     email: String,
     password: String,
     phone: String,
-    totalPriceDonated: String,
-    level: String,
+    totalPriceDonated: Number,
+    level: Number,
+    type: String,
     numDonations: Number,
+    medicines: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Medicine",
+        },
+    ],
 });
 
 UserSchema.plugin(passportLocalMongoose);
