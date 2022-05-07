@@ -8,14 +8,22 @@ const app = express();
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const mongoose = require("mongoose");
+const cors = require("cors")
 const cookieParser = require("cookie-parser");
 const LocalStrategy = require("passport-local");
 const methodOverride = require("method-override");
 const nodemailer = require("nodemailer")
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const User = require("./models/user");
 const Medicine = require("./models/medicine");
 const path = require('path');
 require('dotenv').config()
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
 
 /*
 ==========================================
@@ -31,10 +39,16 @@ mongoose.connect(process.env.MONGO_CONN_STRING, (err) => {
 );
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors(corsOptions));
 app.set("view engine", "ejs");
 app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use(methodOverride("_method"));
 app.use(cookieParser("secret"));
+app.use(function (request, response, next) {
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 //PASSPORT CONFIGURATION
 app.use(require("express-session")({
     secret: "Web Demons Here",
@@ -85,12 +99,15 @@ const userDetails = {
     otp: "",
 }
 
-app.post("/userRegister", function (req, res) {
+app.post("/register", function (req, res) {
     if (isUserOrNgoExist(req.body.phone, req.body.email, "user") == true) {
         var errmsg = {
             message: "Email or Phone Number already registered.",
         };
-        res.render("register", { err: errmsg.message });
+        res.send({
+            success: false,
+            err: errmsg.message,
+        })
     }
     else {
         const userDetails = {
@@ -100,7 +117,7 @@ app.post("/userRegister", function (req, res) {
             password: req.body.password,
             totalPriceDonated: 0,
             level: 0,
-            type: "user",
+            type: req.body.type,
             numDonations: 0,
             //generating random otp
             otp: generateOTP()
@@ -114,56 +131,20 @@ app.post("/userRegister", function (req, res) {
         transporter.sendMail(msg, function (err, data) {
             if (err) {
                 console.log("Error " + err);
+                res.send({
+                    success: false,
+                    err: err,
+                })
             } else {
                 console.log("Email sent successfully");
-                res.redirect("/verifyOtp")
+                res.send({
+                    success: true,
+                    userDetails: userDetails,
+                })
             }
         });
     }
 });
-
-
-app.post("/ngoRegister", function (req, res) {
-    if (isUserOrNgoExist(req.body.phone, req.body.email, "ngo") == true) {
-        var errmsg = {
-            message: "Email or Phone Number already registered.",
-        };
-        res.render("register", { err: errmsg.message });
-    }
-    else {
-        const userDetails = {
-            name: req.body.name,
-            phone: req.body.phone,
-            email: req.body.email,
-            password: req.body.password,
-            totalPriceDonated: 0,
-            level: 0,
-            type: "ngo",
-            numDonations: 0,
-            //generating random otp
-            otp: generateOTP()
-        }
-        const msg = {
-            to: req.body.email, //recipient
-            from: 'remediHackfest@gmail.com',
-            subject: 'Otp for registration is: "',
-            html: "<h3>OTP for account verification is </h3>" + "<h1 style='font-weight:bold;'>" + userDetails.otp + "</h1>" // html body
-        }
-        transporter.sendMail(msg, function (err, data) {
-            if (err) {
-                console.log("Error " + err);
-            } else {
-                console.log("Email sent successfully");
-                res.redirect("/verifyOtp")
-            }
-        });
-    }
-});
-
-app.get("/verifyOtp", (req, res) => {
-    res.render("verifyOtp");
-})
-
 
 
 app.post('/verifyregister', function (req, res) {
@@ -174,20 +155,26 @@ app.post('/verifyregister', function (req, res) {
             email: userDetails.email,
             totalPriceDonated: userDetails.totalPriceDonated,
             level: userDetails.level,
+            password: userDetails.password,
             type: userDetails.type,
             numDonations: userDetails.numDonations,
         });
-        User.register(newUser, userDetails.password, function (err, user) {
-            if (err) {
-                console.log(err);
-                return res.render("register", { err: err.message });
-            }
-            res.render("login")
+        bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err;
+          newUser.password = hash;
+          newUser
+            .save()
+            .then(user => res.json(user))
+            .catch(err => console.log(err));
         });
+      });
     }
     else {
-        res.render('verifyOtp', { err: 'otp is incorrect' });
-    }
+        res.send({
+            success: false,
+            err: "Otp is incorrect"
+        })}
 });
 
 app.post("/login",
@@ -199,7 +186,7 @@ app.post("/login",
 
 app.get("/logout", function (req, res) {
     req.logout();
-    res.redirect("/");
+    res.redirect("/login");
 });
 
 app.get("/dashboard", (req, res) => {
@@ -214,21 +201,13 @@ app.get("/dashboard", (req, res) => {
     });
 })
 
-app.get("/user", isLoggedIn, (req, res) => {
-    User.findOne({ email: req.user.email }, (err, foundUser) => {
+// app.post("/user", isLoggedIn, (req, res) => {
+app.post("/user", (req, res) => {
+    // User.findOne({ email: req.user.email }).populate("medicines").exec((err, foundUser) => {
+    User.findOne({ email: "bhimeshagrawalggc@gmail.com" }).populate("medicines").exec((err, foundUser) => {
         if (err) console.log(err);
-        else {
-            res.render("user_dashboard", { user: foundUser });
-        }
-    });
-})
-
-app.get("/ngo", isLoggedIn, (req, res) => {
-    User.findOne({ email: req.user.email }).populate("medicines").exec((err, foundUser) => {
-        if (err) console.log(err);
-        else {
-            res.render("ngo", { user: foundUser })
-        }
+        else 
+        res.send({ success: true, user: foundUser });
     });
 })
 
@@ -261,12 +240,12 @@ app.post("/medicine", isLoggedIn, (req, res) => {
                 else foundUser.level = 5;
                 foundUser.save((err, data) => {
                     if (err) console.log(err);
+                    res.send({success: true, userDetails: data})
                 });
             }
         });
     }
     );
-    res.redirect("/user")
 })
 
 app.post("/collect/:id", isLoggedIn, (req, res) => {
