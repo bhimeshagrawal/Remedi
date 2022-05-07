@@ -18,7 +18,7 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Base from "../../base";
 import axios from "axios";
-
+let medi={color: "#4D77FF" };
 function Copyright(props) {
   return (
     <Typography
@@ -28,9 +28,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://www.iitism.ac.in/">
-        Indian Institute of Technology, (Indian School of Mines) Dhanbad
-      </Link>{" "}
+      Re-Medi{" "}
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -86,7 +84,6 @@ export default function SignInSide() {
     }
     console.log(response.data);
   };
-
   return (
     <Suspense fallback={<Loader />}>
       <ThemeProvider theme={theme}>
@@ -141,7 +138,7 @@ export default function SignInSide() {
                 }}
               >
                 <Typography component="h1" variant="h4" mb={0} align="center">
-                  <span className="display-6">Career Development Center</span>
+                  <span className="display-6">Re-<span style={medi}>Medi</span></span>
                 </Typography>
                 <Typography
                   component="h3"
@@ -149,17 +146,13 @@ export default function SignInSide() {
                   mb={4}
                   align="center"
                 >
-                  <span>
-                    Indian Institute of Technology (Indian School of Mines)
-                    Dhanbad
-                  </span>
                 </Typography>
                 <hr />
                 <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
                   {/* <LockOutlinedIcon /> */}
                 </Avatar>
-                <Typography component="h1" variant="h6" className="fw-light">
-                  Sign in to access your account
+                <Typography component="h1" variant="h6" className="fw-dark">
+                  Sign in to access your account :
                 </Typography>
                 <Box
                   component="form"
