@@ -18,3 +18,8 @@ font-weight: 700;
 .navbar-brand span{
   color: #4D77FF;
 }
+.navbar-brand #logo {
+  height: 40px;
+  width: 40px;
+  margin: 0 auto;
+}
