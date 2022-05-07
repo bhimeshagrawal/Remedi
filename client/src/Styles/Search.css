@@ -18,13 +18,12 @@
   width: 90%;
   padding: 10px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  flex-flow: column wrap;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:20px;
 }
 .result .card{
   margin: 0 auto;
-  flex-grow: 3;
   margin-bottom: 20px;
 }
 @media screen and (max-width: 1400px) 
@@ -32,4 +31,12 @@
   .search-container{
     height: 77.5vh;
   }
+  .result
+{
+  display: block;
+}
+.result .card{
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
 }
