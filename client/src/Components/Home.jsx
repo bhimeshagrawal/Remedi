@@ -1,5 +1,5 @@
 import React from 'react'
-import '../Styles/home.css'
+import '../Styles/Home.css'
 import doctor from '../Images/Doctor.png'
 export const Home = () => {
   return (

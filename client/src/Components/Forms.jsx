@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/forms.css";
+import "../Styles/Forms.css";
 export const Forms = () => {
   return (
     <div className="form-container">

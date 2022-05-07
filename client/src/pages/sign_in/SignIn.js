@@ -152,7 +152,7 @@ export default function SignInSide() {
                   {/* <LockOutlinedIcon /> */}
                 </Avatar>
                 <Typography component="h1" variant="h6" className="fw-dark">
-                  Sign in to access your account :
+                  Sign In To Access Your Account :
                 </Typography>
                 <Box
                   component="form"
@@ -188,7 +188,9 @@ export default function SignInSide() {
                   >
                     Sign In
                   </Button>
-
+                  <Typography className="fw-light">
+                  Don't have an account? <Link to="./SignUp" style={signUpBtn}>Sign Up</Link>
+                </Typography>
                   <Copyright sx={{ mt: 5 }} />
                 </Box>
               </Box>
@@ -200,3 +202,4 @@ export default function SignInSide() {
     </Suspense>
   );
 }
+let signUpBtn={cursor:"pointer"};

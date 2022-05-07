@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/incentives.css";
+import "../Styles/Incentives.css";
 export const Incentives = () => {
   return (
     <>
