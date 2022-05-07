@@ -73,8 +73,20 @@ app.get("/", (req, res) => {
     res.send("Hii React")
 })
 
-app.post("/register", function (req, res) {
-    if (isUserExist(req.body.phone, req.body.email) == true) {
+const userDetails = {
+    name: "",
+    phone: "",
+    email: "",
+    password: "",
+    totalPriceDonated: 0,
+    level: 0,
+    type: "",
+    numDonations: 0,
+    otp: "",
+}
+
+app.post("/userRegister", function (req, res) {
+    if (isUserOrNgoExist(req.body.phone, req.body.email, "user") == true) {
         var errmsg = {
             message: "Email or Phone Number already registered.",
         };
@@ -82,7 +94,6 @@ app.post("/register", function (req, res) {
     }
     else {
         const userDetails = {
-            username: req.body.username,
             name: req.body.name,
             phone: req.body.phone,
             email: req.body.email,
@@ -95,7 +106,7 @@ app.post("/register", function (req, res) {
             otp: generateOTP()
         }
         const msg = {
-            to: "bhimeshagrawalggc@gmail.com", //recipient
+            to: req.body.email, //recipient
             from: 'remediHackfest@gmail.com',
             subject: 'Otp for registration is: "',
             html: "<h3>OTP for account verification is </h3>" + "<h1 style='font-weight:bold;'>" + userDetails.otp + "</h1>" // html body
@@ -105,8 +116,77 @@ app.post("/register", function (req, res) {
                 console.log("Error " + err);
             } else {
                 console.log("Email sent successfully");
+                res.redirect("/verifyOtp")
             }
         });
+    }
+});
+
+
+app.post("/ngoRegister", function (req, res) {
+    if (isUserOrNgoExist(req.body.phone, req.body.email, "ngo") == true) {
+        var errmsg = {
+            message: "Email or Phone Number already registered.",
+        };
+        res.render("register", { err: errmsg.message });
+    }
+    else {
+        const userDetails = {
+            name: req.body.name,
+            phone: req.body.phone,
+            email: req.body.email,
+            password: req.body.password,
+            totalPriceDonated: 0,
+            level: 0,
+            type: "ngo",
+            numDonations: 0,
+            //generating random otp
+            otp: generateOTP()
+        }
+        const msg = {
+            to: req.body.email, //recipient
+            from: 'remediHackfest@gmail.com',
+            subject: 'Otp for registration is: "',
+            html: "<h3>OTP for account verification is </h3>" + "<h1 style='font-weight:bold;'>" + userDetails.otp + "</h1>" // html body
+        }
+        transporter.sendMail(msg, function (err, data) {
+            if (err) {
+                console.log("Error " + err);
+            } else {
+                console.log("Email sent successfully");
+                res.redirect("/verifyOtp")
+            }
+        });
+    }
+});
+
+app.get("/verifyOtp", (req, res) => {
+    res.render("verifyOtp");
+})
+
+
+
+app.post('/verifyregister', function (req, res) {
+    if (req.body.otp == userDetails.otp) {
+        var newUser = new User({
+            name: userDetails.name,
+            phone: userDetails.phone,
+            email: userDetails.email,
+            totalPriceDonated: userDetails.totalPriceDonated,
+            level: userDetails.level,
+            type: userDetails.type,
+            numDonations: userDetails.numDonations,
+        });
+        User.register(newUser, userDetails.password, function (err, user) {
+            if (err) {
+                console.log(err);
+                return res.render("register", { err: err.message });
+            }
+            res.render("login")
+        });
+    }
+    else {
+        res.render('verifyOtp', { err: 'otp is incorrect' });
     }
 });
 
@@ -164,4 +244,13 @@ function generateOTP() {
         OTP += digits[Math.floor(Math.random() * 10)];
     }
     return OTP;
+}
+
+function isUserOrNgoExist(userName, userEmail, type) {
+    User.find({ $and: [{ type: type }, { $or: [{ username: userName }, { email: userEmail }] }] }, (err, foundUsers) => {
+        if (foundUsers.length != 0)
+            return true;
+        return false;
+    }
+    );
 }
