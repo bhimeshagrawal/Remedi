@@ -190,6 +190,48 @@ app.post('/verifyregister', function (req, res) {
     }
 });
 
+app.post("/login",
+    passport.authenticate("local", {
+        successRedirect: "/dashboard",
+        failureRedirect: "/login",
+    }),
+);
+
+app.get("/logout", function (req, res) {
+    req.logout();
+    res.redirect("/");
+});
+
+app.get("/dashboard", (req, res) => {
+    User.findOne({ email: req.user.email }, (err, foundUser) => {
+        if (err) console.log(err);
+        else {
+            if (foundUser.type == "user")
+                res.redirect("/user");
+            else
+                res.redirect("/ngo");
+        }
+    });
+})
+
+app.get("/user", isLoggedIn, (req, res) => {
+    User.findOne({ email: req.user.email }, (err, foundUser) => {
+        if (err) console.log(err);
+        else {
+            res.render("user_dashboard", { user: foundUser });
+        }
+    });
+})
+
+app.get("/ngo", isLoggedIn, (req, res) => {
+    User.findOne({ email: req.user.email }).populate("medicines").exec((err, foundUser) => {
+        if (err) console.log(err);
+        else {
+            res.render("ngo", { user: foundUser })
+        }
+    });
+})
+
 
 app.post("/medicine", isLoggedIn, (req, res) => {
     const details = {
@@ -206,28 +248,49 @@ app.post("/medicine", isLoggedIn, (req, res) => {
         status: "listed",
         listDate: new Date(),
     }
-    Medicine.create(
-        details,
-        function (err, medicine) {
-            User.findOne({ email: req.user.email }, (err, foundUser) => {
-                if (err) console.log(err);
-                else {
-                    foundUser.totalPriceDonated += details.totalWorth;
-                    foundUser.numDonations++;
-                    if (foundUser.numDonations <= 10) foundUser.level = 1;
-                    else if (foundUser.numDonations > 10 && foundUser.numDonations <= 25) foundUser.level = 2;
-                    else if (foundUser.numDonations > 25 && foundUser.numDonations <= 50) foundUser.level = 3;
-                    else if (foundUser.numDonations > 50 && foundUser.numDonations <= 100) foundUser.level = 4;
-                    else foundUser.level = 5;
-                    foundUser.save(function (err, data) {
-                        if (err) console.log(err);
-                    });
-                }
-            });
-        }
+    Medicine.create(details, (err, medicine) => {
+        User.findOne({ email: req.user.email }, (err, foundUser) => {
+            if (err) console.log(err);
+            else {
+                foundUser.totalPriceDonated += details.totalWorth;
+                foundUser.numDonations++;
+                if (foundUser.numDonations <= 10) foundUser.level = 1;
+                else if (foundUser.numDonations > 10 && foundUser.numDonations <= 25) foundUser.level = 2;
+                else if (foundUser.numDonations > 25 && foundUser.numDonations <= 50) foundUser.level = 3;
+                else if (foundUser.numDonations > 50 && foundUser.numDonations <= 100) foundUser.level = 4;
+                else foundUser.level = 5;
+                foundUser.save((err, data) => {
+                    if (err) console.log(err);
+                });
+            }
+        });
+    }
     );
+    res.redirect("/user")
 })
 
+app.post("/collect/:id", isLoggedIn, (req, res) => {
+    var medicineId = req.params.id;
+    User.findOne({ email: req.user.email }, (err, user) => {
+        if (user.type == "ngo") {
+            Medicine.findOne({ _id: medicineId }, (err, medicine) => {
+                medicine.status = "collected";
+                medicine.save((err, medicine) => {
+                    User.findOne({ email: req.user.email }, function (err, foundUser) {
+                        if (err) console.log(err);
+                        else {
+                            foundUser.medicines.push(medicine);
+                            foundUser.save(function (err, data) {
+                                if (err) console.log(err);
+                            });
+                        }
+                    });
+                });
+            });
+            res.redirect("/ngo");
+        }
+    })
+})
 
 
 function isLoggedIn(req, res, next) {
