@@ -2,7 +2,7 @@ import React from "react";
 import "../Styles/Forms.css";
 export const Forms = () => {
   return (
-    <div className="form-container">
+    <div className="form-container" id="donate">
       <h3>Enter Details :</h3>
       <form>
         <div className="mb-3">

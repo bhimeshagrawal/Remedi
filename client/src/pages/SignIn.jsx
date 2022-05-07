@@ -1,5 +1,6 @@
 import '../Styles/SignIn.css';
 import React, {useState} from 'react';
+import logo from '../Images/bluel.png'
 function App() {
   const [show, setShow] = useState("login")
   const changetoSignup = () => setShow("signup");
@@ -10,7 +11,10 @@ function App() {
     <>
       <div className="HeroContainer">
         <div className="imageContainer">
-          <h2 className='imageHeading m-5'>Re-Medi</h2>
+          <h2 className='imageHeading m-5'>
+          <img src={logo} alt="logo" srcset="" id="logo"/>
+          Re-Medi
+          </h2>
         </div>
 
         <div className="formContainer">

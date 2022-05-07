@@ -6,7 +6,7 @@ export const Footer = () => {
     <>
     <footer className='footer-container'>
       <div className="foot-left">
-        <img src={logo} alt="logo" srcset="" />
+        <img src={logo} alt="logo" />
         Re-<span id="medi">Medi</span>
       </div>
      <div className="foot-right">
