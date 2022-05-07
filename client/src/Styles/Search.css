@@ -11,7 +11,7 @@
 }
 
 .search-container{
-  height: 73vh;
+  height: 75.5vh;
   overflow-y: scroll;
 }
 .result
@@ -30,7 +30,7 @@
 @media screen and (max-width: 1400px) 
 {
   .search-container{
-    height: 77.5vh;
+    height: 69vh;
   }
   .result
 {
