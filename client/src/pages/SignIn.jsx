@@ -1,11 +1,36 @@
 import '../Styles/SignIn.css';
 import React, {useState} from 'react';
+import axios from "axios";
 import logo from '../Images/bluel.png'
 function App() {
   const [show, setShow] = useState("login")
   const changetoSignup = () => setShow("signup");
   const changetoLogin = () => setShow("login");
   console.log(show);
+
+  const [type, setType]= useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const handleSubmit = async () => {
+  const user_data={
+    type: type,
+    name: name,
+    email: email,
+    password: password,
+    phone: phone,
+  };
+  console.log(user_data);
+  const respose = await axios.post(
+    'http://localhost:4000/userRegister', user_data
+  );
+  console.log(respose.data);
+}
+
+ 
+
 
   return (
     <>
@@ -34,31 +59,43 @@ function App() {
               <button type="button" onClick={changetoSignup} className="Changelogin btn btn-primary my-3">Don't have an Account yet?</button>
             </form>)
             : (
-              <form action="" className='signupForm'>
+              <form className='signupForm'>
                 <span className='formHeading'>SIGN-UP</span>
-                <select class="form-select" aria-label="Default select example">
+                <select
+                onChange={(e) => setType(() => e.target.value)}
+                class="form-select" aria-label="Default select example">
                   <option selected>Select User Type</option>
-                  <option value="1">User</option>
-                  <option value="2">NGO</option>
+                  <option value="user">User</option>
+                  <option value="ngo">NGO</option>
                 </select>
                 <hr />
                 <div class="form-floating mb-3">
-                  <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com" />
+                  <input 
+                  onClick={(e)=>setName(() => e.target.value)}
+                  type="text" className="form-control" id="floatingInput" placeholder="name@example.com" />
                   <label for="floatingInput">Name</label>
                 </div>
                 <div className="form-floating mb-3">
-                  <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
+                  <input
+                  onClick={(e)=>setEmail(() => e.target.value)}                 
+                  type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
                   <label for="floatingInput">Email address</label>
                 </div>
                 <div className="form-floating mb-3">
-                  <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
+                  <input 
+                  onClick={(e)=>setPassword(() => e.target.value)}                  
+                  type="password" className="form-control" id="floatingPassword" placeholder="Password" />
                   <label for="floatingPassword">Password</label>
                 </div>
                 <div className="form-floating">
-                  <input type="number" className="form-control" id="floatingPassword" placeholder="Password" />
+                  <input 
+                  onChange={(e) => setPhone(() => e.target.value)}
+                  type="number" className="form-control" id="floatingPassword" placeholder="Password" />
                   <label for="floatingPassword">Mobile No.</label>
                 </div>
-                <button type="button" className="loginBtn btn btn-primary my-3">Sign Up</button>
+                <button
+                onClick={handleSubmit}
+                type="button" className="loginBtn btn btn-primary my-3">Sign Up</button>
                 <hr />
                 <button type="button" onClick={changetoLogin} className="Changelogin btn btn-primary my-3">Already have an Account yet?</button>
               </form>
