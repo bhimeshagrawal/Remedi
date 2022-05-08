@@ -67,7 +67,11 @@ Shubham Kurrey (UI/UX) <br/>
 <br/>
 
 <hr/>
-<h1> Our Current Back-End Progress :</h1>
-<p>On the Backend part, we have created the database schema of the user and the medicine , also we have created various routes for login , registration , and donor form filling,also we had setup nodemailer in the website to use as a mailing system these routes will now be linked to the frontend of the website and hence the website will work integratively.</p>
+<h1> Our Back-End :</h1>
+<p>
+On the Backend part, we have created the database schema of the user and the medicine, also we have created various routes for login, registration, and donor form  filling, also we had setup nodemailer in the website to use as a mailing system these routes has been linked to the frontend of the website and hence the website works integratively.
+<br/>
+  We have also enabled the data extraction through picture of medicine using Open-CV.
+</p>
 <br/>
 
