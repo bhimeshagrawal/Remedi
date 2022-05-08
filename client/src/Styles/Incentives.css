@@ -18,6 +18,10 @@ margin-bottom: 60px;
   border-width: 5px 0 0 0;
   border-color: #4D77FF;
 }
+.card-title{
+  font-size: 50px;
+
+}
 @media screen and (max-width: 1400px) 
 {
   .incentives h3{
