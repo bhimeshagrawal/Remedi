@@ -1,14 +1,26 @@
 import React from "react";
-import '../Styles/Header.css'
-import logo from '../Images/bluel.png'
+import "../Styles/Header.css";
+import axios from "axios";
+import logo from "../Images/bluel.png";
 import { Link } from "react-router-dom";
 export const Header = () => {
+  const handleLogOut = async () => {
+    localStorage.removeItem("username");
+    const response = await axios.get("http://localhost:4000/logout");
+    console.log(response.data);
+    window.location.href = `/`;
+  };
+
+  const handleLogin = async () => {
+    window.location.href = `/`;
+  };
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light ">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/user">
-            <img src={logo} alt="logo" id="logo"/>
+            <img src={logo} alt="logo" id="logo" />
             Re-<span>Medi</span>
           </Link>
           <button
@@ -35,12 +47,23 @@ export const Header = () => {
                 </Link>
               </li>
             </ul>
-            <button className="btn btn-sm btn-outline-primary" id="signin">
-                My Profile
-            </button>
-            {/* <button className="btn btn-sm btn-primary" id="signup">
-                Sign Up
-            </button> */}
+            {localStorage.getItem("username") ? (
+              <button
+                className="btn btn-sm btn-outline-primary"
+                id="logOut"
+                onClick={handleLogOut}
+              >
+                LogOut
+              </button>
+            ) : (
+              <button
+                className="btn btn-sm btn-primary"
+                id="signin"
+                onClick={handleLogin}
+              >
+                Sign In
+              </button>
+            )}
           </div>
         </div>
       </nav>
