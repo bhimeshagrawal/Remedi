@@ -270,25 +270,38 @@ app.post("/medicine", (req, res) => {
   });
 });
 
-app.post("/collect/:id", isLoggedIn, (req, res) => {
-  var medicineId = req.params.id;
-  User.findOne({ email: req.user.email }, (err, user) => {
+app.post("/getMedicine", (req, res) => {
+  Medicine.find({ medNameAndStrength: req.body.query }, (err, foundMeds) => {
+    res.send({
+      success: true,
+      foundMeds: foundMeds,
+    });
+  });
+});
+
+app.post("/collect", (req, res) => {
+  User.findOne({ username: req.body.username }, (err, user) => {
     if (user.type == "ngo") {
-      Medicine.findOne({ _id: medicineId }, (err, medicine) => {
+      Medicine.findOne({ _id: req.body.id }, (err, medicine) => {
         medicine.status = "collected";
         medicine.save((err, medicine) => {
-          User.findOne({ email: req.user.email }, function (err, foundUser) {
-            if (err) console.log(err);
-            else {
-              foundUser.medicines.push(medicine);
-              foundUser.save(function (err, data) {
-                if (err) console.log(err);
-              });
+          User.findOne(
+            { username: req.body.username },
+            function (err, foundUser) {
+              if (err) console.log(err);
+              else {
+                foundUser.medicines.push(medicine);
+                foundUser.save(function (err, data) {
+                  if (err) console.log(err);
+                });
+              }
             }
-          });
+          );
         });
       });
-      res.redirect("/ngo");
+      res.send({
+        success: true,
+      });
     }
   });
 });
