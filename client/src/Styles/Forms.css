@@ -12,6 +12,27 @@
 .form-container .mb-3{
   margin: 40px 0;
 }
+.medicineform{
+  display: flex;
+  flex-direction: row;
+}
+.contleft, .contright{
+  width: 50%;
+}
+.contleft{
+  border-right:1px solid blue ;
+}
+.contright{
+  padding-left: 20px;
+}
+
+.form-control{
+  width: 80%;
+}
+.filefiled{
+  margin-bottom: 30px;
+}
+
 .form-container button{
   display: block;
   margin: 50px auto;
