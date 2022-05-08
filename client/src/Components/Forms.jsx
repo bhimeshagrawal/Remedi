@@ -10,6 +10,7 @@ export const Forms = () => {
   const [expiryDate, setExpiryDate] = useState("");
   const [ndc, setNdc] = useState("");
   const [address, setAddress] = useState("");
+  const [image, imageUpload ] = useState("");
 
   const handleSubmit = async () => {
     const user_data = {
@@ -37,10 +38,15 @@ export const Forms = () => {
     }
   };
 
+  const imageSubmit = async () => {
+    console.log(image);
+  }
+
   return (
     <div className="form-container " id="donate">
       <h3>Enter Details :</h3>
-      <form>
+      <form  className="medicineform">
+        <div className="contleft">
         <div className="mb-3">
           <label for="medicineName" className="form-label">
             Medicine Name and Strength:
@@ -61,7 +67,7 @@ export const Forms = () => {
             type="date"
             className="form-control"
             id="expiryDate"
-            onChange={(e) => setExpiryDate(() => e.target.value)}
+            onChange={(e) => setExpiryDate(() => e.target.files[0])}
           />
         </div>
         <div className="mb-3">
@@ -86,6 +92,8 @@ export const Forms = () => {
             onChange={(e) => setAddress(() => e.target.value)}
           />
         </div>
+        </div>
+        <div className="contright">
         <div className="mb-3">
           <label for="ndc" className="form-label">
             National Drug Code :
@@ -147,13 +155,25 @@ export const Forms = () => {
         >
           Submit
         </button>
+        </div>
       </form>
       <hr />
       <h3>OR</h3>
+      <form>
       <div class="mb-3">
         <label for="formFile" class="form-label">Upload an image of the medicine</label>
-        <input class="form-control filefield" type="file" id="formFile" />
+        <input
+        onChange={(e) => imageUpload(() => e.target.value)}
+        class="form-control filefield" type="file" id="formFile" />
       </div>
+      <button
+          type="button"
+          className="btn btn-primary"
+          onClick={imageSubmit}
+        >
+          Submit
+        </button>
+      </form>
     </div>
   );
 };
