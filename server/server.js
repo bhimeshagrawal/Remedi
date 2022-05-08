@@ -17,6 +17,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("./models/user");
 const Medicine = require("./models/medicine");
+const vision = require("@google-cloud/vision");
+const { checkError } = require("./multerLogic");
 const path = require("path");
 require("dotenv").config();
 const corsOptions = {
@@ -24,6 +26,8 @@ const corsOptions = {
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
+process.env.GOOGLE_APPLICATION_CREDENTIALS =
+  "./remedi-349504-ddc8d6cafde9.json";
 
 /*
 ==========================================
@@ -305,6 +309,28 @@ app.post("/collect", (req, res) => {
     }
   });
 });
+
+async function quickstart(req, res) {
+  try {
+    //Creates a client
+    const client = new vision.ImageAnnotatorClient();
+    const imageDesc = await checkError(req, res);
+    console.log(imageDesc);
+    //Performs text detection on the local file
+    const [result] = await client.textDetection(imageDesc.path);
+    const detections = result.textAnnotations;
+    const [text, ...others] = detections;
+    res.send(`Text: ${text.description}`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+app.get("/detectText", async (req, res) => {
+  res.send("welcome to the homepage");
+});
+
+app.post("/detectText", quickstart);
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
