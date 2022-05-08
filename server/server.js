@@ -210,7 +210,7 @@ app.get("/failure", (req, res) => {
 
 app.get("/logout", function (req, res) {
   req.logout();
-  res.redirect("/login");
+  res.send({ success: true });
 });
 
 app.get("/success", (req, res) => {
@@ -239,18 +239,16 @@ app.post("/medicine", (req, res) => {
     availableQuantity: req.body.availableQuantity,
     totalQuantity: req.body.totalQuantity,
     totalPrice: req.body.totalPrice,
-    totalWorth:
-      (req.body.availableQuantity * req.body.totalPrice) /
-      req.body.totalQuantity,
+    totalWorth: req.body.totalWorth,
     expiryDate: req.body.expiryDate,
     ndc: req.body.ndc,
-    userId: "",
+    username: req.body.username,
     address: req.body.address,
-    status: "listed",
-    listDate: new Date(),
+    status: req.body.status,
+    listDate: req.body.listDate,
   };
   Medicine.create(details, (err, medicine) => {
-    User.findOne({ email: "bhimeshagrawalggc@gmail.com" }, (err, foundUser) => {
+    User.findOne({ email: details.username }, (err, foundUser) => {
       if (err) console.log(err);
       else {
         foundUser.totalPriceDonated += details.totalWorth;
@@ -272,25 +270,38 @@ app.post("/medicine", (req, res) => {
   });
 });
 
-app.post("/collect/:id", isLoggedIn, (req, res) => {
-  var medicineId = req.params.id;
-  User.findOne({ email: req.user.email }, (err, user) => {
+app.post("/getMedicine", (req, res) => {
+  Medicine.find({ medNameAndStrength: req.body.query }, (err, foundMeds) => {
+    res.send({
+      success: true,
+      foundMeds: foundMeds,
+    });
+  });
+});
+
+app.post("/collect", (req, res) => {
+  User.findOne({ username: req.body.username }, (err, user) => {
     if (user.type == "ngo") {
-      Medicine.findOne({ _id: medicineId }, (err, medicine) => {
+      Medicine.findOne({ _id: req.body.id }, (err, medicine) => {
         medicine.status = "collected";
         medicine.save((err, medicine) => {
-          User.findOne({ email: req.user.email }, function (err, foundUser) {
-            if (err) console.log(err);
-            else {
-              foundUser.medicines.push(medicine);
-              foundUser.save(function (err, data) {
-                if (err) console.log(err);
-              });
+          User.findOne(
+            { username: req.body.username },
+            function (err, foundUser) {
+              if (err) console.log(err);
+              else {
+                foundUser.medicines.push(medicine);
+                foundUser.save(function (err, data) {
+                  if (err) console.log(err);
+                });
+              }
             }
-          });
+          );
         });
       });
-      res.redirect("/ngo");
+      res.send({
+        success: true,
+      });
     }
   });
 });
