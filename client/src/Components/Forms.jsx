@@ -148,15 +148,16 @@ export const Forms = () => {
             <option value="Other" />
           </datalist>
         </div>
-        <button
+        
+        </div>
+      </form>
+      <button
           type="button"
           className="btn btn-primary"
           onClick={handleSubmit}
         >
           Submit
-        </button>
-        </div>
-      </form>
+      </button>
       <hr />
       <h3>OR</h3>
       <form>
